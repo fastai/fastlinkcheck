@@ -20,7 +20,7 @@ Check for broken links recursively in `path`.
 
 The [_example/](https://github.com/fastai/fastlinkcheck/tree/master/_example) directory in this repo contains sample HTML files which we can use for demonstration:
 
-```python
+```
 from fastlinkcheck import link_check
 
 broken_links = link_check(path='_example', host='fastlinkcheck.com')
@@ -41,7 +41,7 @@ print(broken_links)
 
 You can optionally print logs to stdout with the `print_logs` parameter.  This can be useful for debugging:
 
-```python
+```
 broken_links = link_check(path='_example', host='fastlinkcheck.com', print_logs=True)
 ```
 
@@ -57,7 +57,7 @@ broken_links = link_check(path='_example', host='fastlinkcheck.com', print_logs=
       - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
 
 
-```python
+```
 print(f'Number of broken links found {len(broken_links)}')
 ```
 
@@ -68,7 +68,7 @@ print(f'Number of broken links found {len(broken_links)}')
 
 You can choose to ignore files with a a plain-text file containing a list of urls to ignore.  For example, the file `linkcheck.rc` contains a list of urls I want to ignore:
 
-```python
+```
 with open('_example/linkcheck.rc', 'r') as f: print(f.read())
 ```
 
@@ -79,7 +79,7 @@ with open('_example/linkcheck.rc', 'r') as f: print(f.read())
 
 In this case `example/test.js` will be filtered out from the list:
 
-```python
+```
 broken_links = link_check(path='_example', host='fastlinkcheck.com', config_file='_example/linkcheck.rc')
 print(broken_links)
 ```
@@ -98,7 +98,7 @@ print(broken_links)
 
 > link_check --help
 
-```bash
+```
 usage: link_check [-h] [--host HOST] [--config_file CONFIG_FILE]
                   [--actions_output] [--exit_on_found] [--print_logs] [--pdb]
                   [--xtra XTRA]
