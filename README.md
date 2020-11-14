@@ -24,7 +24,7 @@ The `path` parameter specifies the directory that will be searched recursively f
 
 Specifying the `host` parameter allows you detect links that are internal by identifying links with that host name. External links are verified by making a request to the appropriate website.  On the other hand, internal links are verified by inspecting the presence and content of local files.  
 
-```
+```python
 from fastlinkcheck import link_check
 
 broken_links = link_check(path='_example', host='fastlinkcheck.com')
@@ -45,7 +45,7 @@ print(broken_links)
 
 You can optionally print logs to stdout with the `print_logs` parameter.  This can be useful for debugging:
 
-```
+```python
 broken_links = link_check(path='_example', host='fastlinkcheck.com', print_logs=True)
 ```
 
@@ -61,7 +61,7 @@ broken_links = link_check(path='_example', host='fastlinkcheck.com', print_logs=
       - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
 
 
-```
+```python
 print(f'Number of broken links found {len(broken_links)}')
 ```
 
@@ -72,7 +72,7 @@ print(f'Number of broken links found {len(broken_links)}')
 
 You can choose to ignore files with a a plain-text file containing a list of urls to ignore.  For example, the file `linkcheck.rc` contains a list of urls I want to ignore:
 
-```
+```python
 with open('_example/linkcheck.rc', 'r') as f: print(f.read())
 ```
 
@@ -83,7 +83,7 @@ with open('_example/linkcheck.rc', 'r') as f: print(f.read())
 
 In this case `example/test.js` will be filtered out from the list:
 
-```
+```python
 broken_links = link_check(path='_example', host='fastlinkcheck.com', config_file='_example/linkcheck.rc')
 print(broken_links)
 ```
