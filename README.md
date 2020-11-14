@@ -2,7 +2,7 @@
 > Check for broken external and internal links.  
 
 
-Check for broken links in HTML documents.  This occurs in parallel so performance is fast.  Both external links and external links are checked, with intelligent behavior for checking internal links by verifying local files.
+Check for broken links in HTML documents.  This occurs in parallel so performance is fast.  Both external links and internal links are checked.  Internal links are checked by verifying local files.
 
 ## Install
 
@@ -18,7 +18,11 @@ Check for broken links in HTML documents.  This occurs in parallel so performanc
 Check for broken links recursively in `path`.
 
 
-The [_example/](https://github.com/fastai/fastlinkcheck/tree/master/_example) directory in this repo contains sample HTML files which we can use for demonstration:
+The [_example/](https://github.com/fastai/fastlinkcheck/tree/master/_example) directory in this repo contains sample HTML files which we can use for demonstration.  
+
+The `path` parameter specifies the directory that will be searched recursively for HTML files that you wish to check.
+
+Specifying the `host` parameter allows you detect links that are internal by identifying links with that host name. External links are verified by making a request to a website to check a link.  On the other hand, internal links are verified by inspecting the presence and content of local files.  
 
 ```
 from fastlinkcheck import link_check

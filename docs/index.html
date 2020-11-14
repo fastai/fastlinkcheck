@@ -31,7 +31,7 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Check for broken links in HTML documents.  This occurs in parallel so performance is fast.  Both external links and external links are checked, with intelligent behavior for checking internal links by verifying local files.</p>
+<p>Check for broken links in HTML documents.  This occurs in parallel so performance is fast.  Both external links and internal links are checked.  Internal links are checked by verifying local files.</p>
 
 </div>
 </div>
@@ -82,7 +82,9 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <a href="https://github.com/fastai/fastlinkcheck/tree/master/_example">_example/</a> directory in this repo contains sample HTML files which we can use for demonstration:</p>
+<p>The <a href="https://github.com/fastai/fastlinkcheck/tree/master/_example">_example/</a> directory in this repo contains sample HTML files which we can use for demonstration.</p>
+<p>The <code>path</code> parameter specifies the directory that will be searched recursively for HTML files that you wish to check.</p>
+<p>Specifying the <code>host</code> parameter allows you detect links that are internal by identifying links with that host name. External links are verified by making a request to a website to check a link.  On the other hand, internal links are verified by inspecting the presence and content of local files.</p>
 
 </div>
 </div>
