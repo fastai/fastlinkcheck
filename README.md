@@ -20,29 +20,26 @@ Check for broken links recursively in `path`.
 
 The [_example/](https://github.com/fastai/fastlinkcheck/tree/master/_example) directory in this repo contains sample HTML files which we can use for demonstration:
 
+```python
+links = link_check(path='_example', host='fastlinkcheck.com')
+print(links)
 ```
-link_check(path='_example', host='fastlinkcheck.com')
-```
 
 
 
 
 
-
-
-
-- 'http://somecdn.com/doesntexist.html' was found in the following pages:
-  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
-- Path('/Users/hamelsmu/github/fastlinkcheck/_example/test.js') was found in the following pages:
-  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
-
+    - 'http://somecdn.com/doesntexist.html' was found in the following pages:
+      - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
+    - Path('/Users/hamelsmu/github/fastlinkcheck/_example/test.js') was found in the following pages:
+      - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
 
 
 ### Ignore links with a configuration file
 
 You can choose to ignore files with a a plain-text file containing a list of urls to ignore.  For example, the file `linkcheck.rc` contains a list of urls I want to ignore:
 
-```
+```python
 with open('_example/linkcheck.rc', 'r') as f: print(f.read())
 ```
 
@@ -53,20 +50,17 @@ with open('_example/linkcheck.rc', 'r') as f: print(f.read())
 
 In this case `example/test.js` will be filtered out from the list:
 
+```python
+links = link_check(path='_example', host='fastlinkcheck.com', config_file='_example/linkcheck.rc')
+print(links)
 ```
-link_check(path='_example', host='fastlinkcheck.com', config_file='_example/linkcheck.rc')
-```
 
 
 
 
 
-
-
-
-- 'http://somecdn.com/doesntexist.html' was found in the following pages:
-  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
-
+    - 'http://somecdn.com/doesntexist.html' was found in the following pages:
+      - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
 
 
 ### CLI Function
@@ -75,7 +69,7 @@ link_check(path='_example', host='fastlinkcheck.com', config_file='_example/link
 {% include note.html content='the `!` command in Jupyter allows you [run shell commands](https://stackoverflow.com/questions/38694081/executing-terminal-commands-in-jupyter-notebook/48529220)' %}
 The `-h` or `--help` flag will allow you to see the command line docs:
 
-```
+```python
 !link_check -h
 ```
 

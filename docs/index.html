@@ -94,7 +94,8 @@ nb_path: "index.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">link_check</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;_example&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;fastlinkcheck.com&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">links</span> <span class="o">=</span> <span class="n">link_check</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;_example&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;fastlinkcheck.com&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -115,21 +116,13 @@ nb_path: "index.ipynb"
 
 <div class="output_area">
 
-
-<div class="output_markdown rendered_html output_subarea output_execute_result">
-<ul>
-<li>'<a href="http://somecdn.com/doesntexist.html">http://somecdn.com/doesntexist.html</a>' was found in the following pages:<ul>
-<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/test.html</code></li>
-</ul>
-</li>
-<li>Path('/Users/hamelsmu/github/fastlinkcheck/_example/test.js') was found in the following pages:<ul>
-<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/test.html</code></li>
-</ul>
-</li>
-</ul>
-
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>- &#39;http://somecdn.com/doesntexist.html&#39; was found in the following pages:
+  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
+- Path(&#39;/Users/hamelsmu/github/fastlinkcheck/_example/test.js&#39;) was found in the following pages:
+  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -198,7 +191,8 @@ https://www.google.com
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">link_check</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;_example&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;fastlinkcheck.com&#39;</span><span class="p">,</span> <span class="n">config_file</span><span class="o">=</span><span class="s1">&#39;_example/linkcheck.rc&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">links</span> <span class="o">=</span> <span class="n">link_check</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;_example&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;fastlinkcheck.com&#39;</span><span class="p">,</span> <span class="n">config_file</span><span class="o">=</span><span class="s1">&#39;_example/linkcheck.rc&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -219,17 +213,11 @@ https://www.google.com
 
 <div class="output_area">
 
-
-<div class="output_markdown rendered_html output_subarea output_execute_result">
-<ul>
-<li>'<a href="http://somecdn.com/doesntexist.html">http://somecdn.com/doesntexist.html</a>' was found in the following pages:<ul>
-<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/test.html</code></li>
-</ul>
-</li>
-</ul>
-
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>- &#39;http://somecdn.com/doesntexist.html&#39; was found in the following pages:
+  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
+</pre>
 </div>
-
 </div>
 
 </div>
