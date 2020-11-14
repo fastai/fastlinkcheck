@@ -18,6 +18,7 @@ jobs:
     - uses: fastai/workflows/conda-env@master
     - name: Create condarc
       run: |
+        conda install conda-build
         cat >> ~/.condarc << EOF
         conda-build:
           anaconda_token: ${{ secrets.CONDA_TOKEN }}
