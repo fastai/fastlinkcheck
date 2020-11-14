@@ -20,7 +20,7 @@ Check for broken links recursively in `path`.
 
 The [_example/](https://github.com/fastai/fastlinkcheck/tree/master/_example) directory in this repo contains sample HTML files which we can use for demonstration:
 
-```python
+```
 broken_links = link_check(path='_example', host='fastlinkcheck.com')
 print(broken_links)
 ```
@@ -39,7 +39,7 @@ print(broken_links)
 
 You can optionally print logs to stdout with the `print_logs` parameter.  This can be useful for debugging:
 
-```python
+```
 broken_links = link_check(path='_example', host='fastlinkcheck.com', print_logs=True)
 ```
 
@@ -55,7 +55,7 @@ broken_links = link_check(path='_example', host='fastlinkcheck.com', print_logs=
       - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
 
 
-```python
+```
 print(f'Number of broken links found {len(broken_links)}')
 ```
 
@@ -66,7 +66,7 @@ print(f'Number of broken links found {len(broken_links)}')
 
 You can choose to ignore files with a a plain-text file containing a list of urls to ignore.  For example, the file `linkcheck.rc` contains a list of urls I want to ignore:
 
-```python
+```
 with open('_example/linkcheck.rc', 'r') as f: print(f.read())
 ```
 
@@ -77,7 +77,7 @@ with open('_example/linkcheck.rc', 'r') as f: print(f.read())
 
 In this case `example/test.js` will be filtered out from the list:
 
-```python
+```
 broken_links = link_check(path='_example', host='fastlinkcheck.com', config_file='_example/linkcheck.rc')
 print(broken_links)
 ```
@@ -92,11 +92,11 @@ print(broken_links)
 
 ### CLI Function
 
-`link_check` can also be called use from the command line like this:
+<code>link_check</code> can also be called use from the command line like this:
 {% include note.html content='the `!` command in Jupyter allows you [run shell commands](https://stackoverflow.com/questions/38694081/executing-terminal-commands-in-jupyter-notebook/48529220)' %}
 The `-h` or `--help` flag will allow you to see the command line docs:
 
-```python
+```
 !link_check -h
 ```
 
