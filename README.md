@@ -21,8 +21,8 @@ Check for broken links recursively in `path`.
 The [_example/](https://github.com/fastai/fastlinkcheck/tree/master/_example) directory in this repo contains sample HTML files which we can use for demonstration:
 
 ```python
-links = link_check(path='_example', host='fastlinkcheck.com')
-print(links)
+broken_links = link_check(path='_example', host='fastlinkcheck.com')
+print(broken_links)
 ```
 
 
@@ -33,6 +33,33 @@ print(links)
       - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
     - Path('/Users/hamelsmu/github/fastlinkcheck/_example/test.js') was found in the following pages:
       - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
+
+
+### Print logs to stdout 
+
+You can optionally print logs to stdout with the `print_logs` parameter.  This can be useful for debugging:
+
+```python
+broken_links = link_check(path='_example', host='fastlinkcheck.com', print_logs=True)
+```
+
+
+
+
+
+    
+    ERROR: The Following Broken Links or Paths were found:
+    - 'http://somecdn.com/doesntexist.html' was found in the following pages:
+      - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
+    - Path('/Users/hamelsmu/github/fastlinkcheck/_example/test.js') was found in the following pages:
+      - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
+
+
+```python
+print(f'Number of broken links found {len(broken_links)}')
+```
+
+    Number of broken links found 2
 
 
 ### Ignore links with a configuration file
@@ -51,8 +78,8 @@ with open('_example/linkcheck.rc', 'r') as f: print(f.read())
 In this case `example/test.js` will be filtered out from the list:
 
 ```python
-links = link_check(path='_example', host='fastlinkcheck.com', config_file='_example/linkcheck.rc')
-print(links)
+broken_links = link_check(path='_example', host='fastlinkcheck.com', config_file='_example/linkcheck.rc')
+print(broken_links)
 ```
 
 
