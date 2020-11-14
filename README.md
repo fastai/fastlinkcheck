@@ -65,16 +65,7 @@ broken_links = link_check(path='_example', host='fastlinkcheck.com', print_logs=
 print(f'Number of broken links found {len(broken_links)}')
 ```
 
-
-    -------------------------------------------------
-
-    TypeError       Traceback (most recent call last)
-
-    <ipython-input-5-e589e1a0dc6b> in <module>
-    ----> 1 print(f'Number of broken links found {len(broken_links)}')
-    
-
-    TypeError: object of type 'NoneType' has no len()
+    Number of broken links found 2
 
 
 ### Ignore links with a configuration file
@@ -85,12 +76,25 @@ You can choose to ignore files with a a plain-text file containing a list of url
 with open('_example/linkcheck.rc', 'r') as f: print(f.read())
 ```
 
+    test.js
+    https://www.google.com
+    
+
+
 In this case `example/test.js` will be filtered out from the list:
 
 ```
 broken_links = link_check(path='_example', host='fastlinkcheck.com', config_file='_example/linkcheck.rc')
 print(broken_links)
 ```
+
+
+
+
+
+    - 'http://somecdn.com/doesntexist.html' was found in the following pages:
+      - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
+
 
 ### CLI Function
 
