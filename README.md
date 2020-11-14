@@ -10,10 +10,6 @@ Check for broken links in HTML documents.  This occurs in parallel so performanc
 
 ## Usage
 
-```python
-from fastlinkcheck import link_check
-```
-
 
 <h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L83" class="source_link" style="float:right">[source]</a></h4>
 
@@ -21,6 +17,8 @@ from fastlinkcheck import link_check
 
 Check for broken links recursively in `path`.
 
+
+The [_example/](https://github.com/fastai/fastlinkcheck/tree/master/_example) directory in this repo contains sample HTML files which we can use for demonstration:
 
 ```python
 link_check(path='_example', host='fastlinkcheck.com')
