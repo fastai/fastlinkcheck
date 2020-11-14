@@ -2,7 +2,7 @@
 > Check for broken external and internal links.  
 
 
-This is useful for checking for broken links in static site generators.
+Check for broken links in HTML documents.  This occurs in parallel so performance is fast.  Both external links and external links are checked, with intelligent behavior for internal links.
 
 ## Install
 
@@ -10,11 +10,19 @@ This is useful for checking for broken links in static site generators.
 
 ## Usage
 
-```
+```python
 from fastlinkcheck import link_check
 ```
 
-```
+
+<h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L83" class="source_link" style="float:right">[source]</a></h4>
+
+> <code>link_check</code>(**`path`**:"Root directory searched recursively for HTML files", **`host`**:"Host and path (without protocol) of web server"=*`''`*, **`config_file`**:"Location of file with urls to ignore"=*`None`*, **`actions_output`**:"Toggle GitHub Actions output on/off"=*`False`*, **`exit_on_found`**:"(CLI Only) Exit with status code 1 if broken links are found"=*`False`*, **`print_logs`**:"Toggle printing logs to stdout."=*`False`*)
+
+Check for broken links recursively in `path`.
+
+
+```python
 link_check(path='_example', host='fastlinkcheck.com')
 ```
 
@@ -34,7 +42,7 @@ link_check(path='_example', host='fastlinkcheck.com')
 
 You can choose to ignore files with a a plain-text file containing a list of urls to ignore.  For example, the file `linkcheck.rc` contains a list of urls I want to ignore:
 
-```
+```python
 with open('_example/linkcheck.rc', 'r') as f: print(f.read())
 ```
 
@@ -45,7 +53,7 @@ with open('_example/linkcheck.rc', 'r') as f: print(f.read())
 
 In this case `example/test.js` will be filtered out from the list:
 
-```
+```python
 link_check(path='_example', host='fastlinkcheck.com', config_file='_example/linkcheck.rc')
 ```
 
@@ -63,11 +71,11 @@ link_check(path='_example', host='fastlinkcheck.com', config_file='_example/link
 
 ### CLI Function
 
-`check` can also be called use from the command line like this:
+`link_check` can also be called use from the command line like this:
 {% include note.html content='the `!` command in Jupyter allows you [run shell commands](https://stackoverflow.com/questions/38694081/executing-terminal-commands-in-jupyter-notebook/48529220)' %}
 The `-h` or `--help` flag will allow you to see the command line docs:
 
-```
+```python
 !link_check -h
 ```
 
