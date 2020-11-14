@@ -1,9 +1,9 @@
 package:
   name: fastlinkcheck
-  version: 0.0.3
+  version: 0.0.7
 source:
-  sha256: 9d2534e6d24bb38f893c03bb843bd11e574974d079b67e2314557aff8697c9a0
-  url: https://files.pythonhosted.org/packages/b1/fd/213d8df6aa9c5effeddfe84146f0c3e103c14e067a232b98ff8bcf8ae68b/fastlinkcheck-0.0.3.tar.gz
+  sha256: 665906ce05ee729c3e1f5aec4f2e2f5fcb731cb46fdf8297d556312c9f5b15b9
+  url: https://files.pythonhosted.org/packages/4a/19/9fda14124f38d1d8112e84f9fa1dfb1e632d3b04954bd4a3391e56fd3254/fastlinkcheck-0.0.7.tar.gz
 about:
   dev_url: https://fastlinkcheck.fast.ai
   doc_url: https://fastlinkcheck.fast.ai

@@ -13,7 +13,7 @@
 
 <h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L83" class="source_link" style="float:right">[source]</a></h4>
 
-> <code>link_check</code>(**`path`**:"Root directory searched recursively for HTML files", **`host`**:"Host and path (without protocol) of web server"=*`''`*, **`config_file`**:"Location of file with urls to ignore"=*`None`*, **`actions_output`**:"Toggle GitHub Actions output on/off"=*`False`*, **`exit_on_found`**:"(CLI Only) Exit with status code 1 if broken links are found"=*`False`*, **`print_logs`**:"Toggle printing logs to stdout."=*`False`*)
+> <code>link_check</code>(**`path`**:"Root directory searched recursively for HTML files", **`host`**:"Host and path (without protocol) of web server"=*`''`*, **`config_file`**:"Location of file with urls to ignore"=*`None`*, **`actions_output`**:"Toggle GitHub Actions output on/off"=*`False`*, **`print_logs`**:"Toggle printing logs to stdout."=*`False`*)
 
 Check for broken links recursively in `path`.
 
@@ -24,7 +24,7 @@ The `path` parameter specifies the directory that will be searched recursively f
 
 Specifying the `host` parameter allows you detect links that are internal by identifying links with that host name. External links are verified by making a request to the appropriate website.  On the other hand, internal links are verified by inspecting the presence and content of local files.  
 
-```python
+```
 from fastlinkcheck import link_check
 
 broken_links = link_check(path='_example', host='fastlinkcheck.com')
@@ -45,7 +45,7 @@ print(broken_links)
 
 You can optionally print logs to stdout with the `print_logs` parameter.  This can be useful for debugging:
 
-```python
+```
 broken_links = link_check(path='_example', host='fastlinkcheck.com', print_logs=True)
 ```
 
@@ -61,40 +61,36 @@ broken_links = link_check(path='_example', host='fastlinkcheck.com', print_logs=
       - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
 
 
-```python
+```
 print(f'Number of broken links found {len(broken_links)}')
 ```
 
-    Number of broken links found 2
+
+    -------------------------------------------------
+
+    TypeError       Traceback (most recent call last)
+
+    <ipython-input-5-e589e1a0dc6b> in <module>
+    ----> 1 print(f'Number of broken links found {len(broken_links)}')
+    
+
+    TypeError: object of type 'NoneType' has no len()
 
 
 ### Ignore links with a configuration file
 
 You can choose to ignore files with a a plain-text file containing a list of urls to ignore.  For example, the file `linkcheck.rc` contains a list of urls I want to ignore:
 
-```python
+```
 with open('_example/linkcheck.rc', 'r') as f: print(f.read())
 ```
 
-    test.js
-    https://www.google.com
-    
-
-
 In this case `example/test.js` will be filtered out from the list:
 
-```python
+```
 broken_links = link_check(path='_example', host='fastlinkcheck.com', config_file='_example/linkcheck.rc')
 print(broken_links)
 ```
-
-
-
-
-
-    - 'http://somecdn.com/doesntexist.html' was found in the following pages:
-      - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
-
 
 ### CLI Function
 
@@ -104,11 +100,8 @@ print(broken_links)
 
 ```
 usage: link_check [-h] [--host HOST] [--config_file CONFIG_FILE]
-                  [--actions_output] [--exit_on_found] [--print_logs] [--pdb]
-                  [--xtra XTRA]
+                  [--actions_output] [--exit_on_found] [--pdb] [--xtra XTRA]
                   path
-
-Check for broken links recursively in `path`.
 
 positional arguments:
   path                  Root directory searched recursively for HTML files
@@ -120,7 +113,6 @@ optional arguments:
   --config_file CONFIG_FILE
                         Location of file with urls to ignore
   --actions_output      Toggle GitHub Actions output on/off (default: False)
-  --exit_on_found       Exit with status code 1 if broken links are
+  --exit_on_found       (CLI Only) Exit with status code 1 if broken links are
                         found (default: False)
-  --print_logs          Toggle printing logs to stdout. (default: False)
 ```

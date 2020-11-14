@@ -6,7 +6,8 @@ index = {"get_links": "linkcheck.ipynb",
          "local_urls": "linkcheck.ipynb",
          "broken_local": "linkcheck.ipynb",
          "broken_urls": "linkcheck.ipynb",
-         "link_check": "linkcheck.ipynb"}
+         "link_check": "linkcheck.ipynb",
+         "link_check_cli": "linkcheck.ipynb"}
 
 modules = ["linkcheck.py"]
 
