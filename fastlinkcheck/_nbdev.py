@@ -10,7 +10,7 @@ index = {"get_links": "linkcheck.ipynb",
 
 modules = ["linkcheck.py"]
 
-doc_url = "https://fastai.github.io/fastlinkcheck/"
+doc_url = "https://fastlinkcheck.fast.ai/fastlinkcheck/"
 
 git_url = "https://github.com/fastai/fastlinkcheck/tree/master/"
 
