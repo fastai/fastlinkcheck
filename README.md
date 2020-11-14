@@ -21,6 +21,8 @@ Check for broken links recursively in `path`.
 The [_example/](https://github.com/fastai/fastlinkcheck/tree/master/_example) directory in this repo contains sample HTML files which we can use for demonstration:
 
 ```python
+from fastlinkcheck import link_check
+
 broken_links = link_check(path='_example', host='fastlinkcheck.com')
 print(broken_links)
 ```
@@ -92,8 +94,8 @@ print(broken_links)
 
 ### CLI Function
 
-`link_check` can also be called use from the command line like this:
-{% include note.html content='the `!` command in Jupyter allows you [run shell commands](https://stackoverflow.com/questions/38694081/executing-terminal-commands-in-jupyter-notebook/48529220)' %}
+<code>link_check</code> can also be called use from the command line like this:
+
 The `-h` or `--help` flag will allow you to see the command line docs:
 
 ```python
