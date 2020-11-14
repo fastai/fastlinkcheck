@@ -94,34 +94,29 @@ print(broken_links)
 
 ### CLI Function
 
-<code>link_check</code> can also be called use from the command line like this:
+<code>link_check</code> can also be called from the command line.  We can see various options by passing the `--help` flag.  These options correspond to the same parameters as calling the link_check function described above.
 
-The `-h` or `--help` flag will allow you to see the command line docs:
+> link_check --help
 
-```python
-!link_check -h
+```bash
+usage: link_check [-h] [--host HOST] [--config_file CONFIG_FILE]
+                  [--actions_output] [--exit_on_found] [--print_logs] [--pdb]
+                  [--xtra XTRA]
+                  path
+
+Check for broken links recursively in `path`.
+
+positional arguments:
+  path                  Root directory searched recursively for HTML files
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --host HOST           Host and path (without protocol) of web server
+                        (default: )
+  --config_file CONFIG_FILE
+                        Location of file with urls to ignore
+  --actions_output      Toggle GitHub Actions output on/off (default: False)
+  --exit_on_found       Exit with status code 1 if broken links are
+                        found (default: False)
+  --print_logs          Toggle printing logs to stdout. (default: False)
 ```
-
-    usage: link_check [-h] [--host HOST] [--config_file CONFIG_FILE]
-                      [--actions_output] [--exit_on_found] [--print_logs] [--pdb]
-                      [--xtra XTRA]
-                      path
-    
-    Check for broken links recursively in `path`.
-    
-    positional arguments:
-      path                  Root directory searched recursively for HTML files
-    
-    optional arguments:
-      -h, --help            show this help message and exit
-      --host HOST           Host and path (without protocol) of web server
-                            (default: )
-      --config_file CONFIG_FILE
-                            Location of file with urls to ignore
-      --actions_output      Toggle GitHub Actions output on/off (default: False)
-      --exit_on_found       (CLI Only) Exit with status code 1 if broken links are
-                            found (default: False)
-      --print_logs          Toggle printing logs to stdout. (default: False)
-      --pdb                 Run in pdb debugger (default: False)
-      --xtra XTRA           Parse for additional args (default: '')
-
