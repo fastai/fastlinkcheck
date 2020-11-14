@@ -2,7 +2,7 @@
 > Check for broken external and internal links.  
 
 
-Check for broken links in HTML documents.  This occurs in parallel so performance is fast.  Both external links and internal links are checked.  Internal links are checked by verifying local files.
+`fastlinkcheck` checks for broken links in HTML documents.  This occurs in parallel so performance is fast.  Both external links and internal links are checked.  Internal links are checked by verifying local files.
 
 ## Install
 
