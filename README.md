@@ -10,10 +10,6 @@ Check for broken links in HTML documents.  This occurs in parallel so performanc
 
 ## Usage
 
-```python
-from fastlinkcheck import link_check
-```
-
 
 <h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L83" class="source_link" style="float:right">[source]</a></h4>
 
@@ -22,23 +18,51 @@ from fastlinkcheck import link_check
 Check for broken links recursively in `path`.
 
 
+The [_example/](https://github.com/fastai/fastlinkcheck/tree/master/_example) directory in this repo contains sample HTML files which we can use for demonstration:
+
 ```python
-link_check(path='_example', host='fastlinkcheck.com')
+broken_links = link_check(path='_example', host='fastlinkcheck.com')
+print(broken_links)
 ```
 
 
 
 
 
+    - 'http://somecdn.com/doesntexist.html' was found in the following pages:
+      - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
+    - Path('/Users/hamelsmu/github/fastlinkcheck/_example/test.js') was found in the following pages:
+      - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
+
+
+### Print logs to stdout 
+
+You can optionally print logs to stdout with the `print_logs` parameter.  This can be useful for debugging:
+
+```python
+broken_links = link_check(path='_example', host='fastlinkcheck.com', print_logs=True)
+```
 
 
 
-- 'http://somecdn.com/doesntexist.html' was found in the following pages:
-  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
-- Path('/Users/hamelsmu/github/fastlinkcheck/_example/test.js') was found in the following pages:
-  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
 
 
+    
+    ERROR: The Following Broken Links or Paths were found:
+    - 'http://somecdn.com/doesntexist.html' was found in the following pages:
+      - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
+    - Path('/Users/hamelsmu/github/fastlinkcheck/_example/test.js') was found in the following pages:
+      - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
+
+
+```python
+print(f'Number of broken links found {len(broken_links)}')
+```
+
+    Number of broken links found 2
+
+
+### Ignore links with a configuration file
 
 You can choose to ignore files with a a plain-text file containing a list of urls to ignore.  For example, the file `linkcheck.rc` contains a list of urls I want to ignore:
 
@@ -54,19 +78,16 @@ with open('_example/linkcheck.rc', 'r') as f: print(f.read())
 In this case `example/test.js` will be filtered out from the list:
 
 ```python
-link_check(path='_example', host='fastlinkcheck.com', config_file='_example/linkcheck.rc')
+broken_links = link_check(path='_example', host='fastlinkcheck.com', config_file='_example/linkcheck.rc')
+print(broken_links)
 ```
 
 
 
 
 
-
-
-
-- 'http://somecdn.com/doesntexist.html' was found in the following pages:
-  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
-
+    - 'http://somecdn.com/doesntexist.html' was found in the following pages:
+      - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
 
 
 ### CLI Function
