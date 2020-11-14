@@ -22,7 +22,7 @@ The [_example/](https://github.com/fastai/fastlinkcheck/tree/master/_example) di
 
 The `path` parameter specifies the directory that will be searched recursively for HTML files that you wish to check.
 
-Specifying the `host` parameter allows you detect links that are internal by identifying links with that host name. External links are verified by making a request to a website to check a link.  On the other hand, internal links are verified by inspecting the presence and content of local files.  
+Specifying the `host` parameter allows you detect links that are internal by identifying links with that host name. External links are verified by making a request to the appropriate website.  On the other hand, internal links are verified by inspecting the presence and content of local files.  
 
 ```python
 from fastlinkcheck import link_check
