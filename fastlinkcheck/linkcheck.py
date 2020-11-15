@@ -83,7 +83,8 @@ def broken_urls(links, ignore_urls=None):
 @call_parse
 def link_check(path:Param("Root directory searched recursively for HTML files", str),
                host:Param("Host and path (without protocol) of web server", str)='',
-               config_file:Param("Location of file with urls to ignore",str)=None):
+               config_file:Param("Location of file with urls to ignore",str)=None,
+               exit_on_err:Param("Location of file with urls to ignore", store_true)=False):
     """Check for broken links recursively in `path`."""
     path = Path(path)
     assert path.exists(), f"{path.absolute()} does not exist."
@@ -96,4 +97,5 @@ def link_check(path:Param("Root directory searched recursively for HTML files", 
     lm = _LinkMap({k:links[k] for k in (broken_urls(links, ignore_urls) + broken_local(links, ignore_paths))})
     msg = f'\nERROR: The Following Broken Links or Paths were found:\n{lm}' if lm else 'No Broken Links Found!'
     if is_cli: print(msg)
+    if exit_on_err: sys.exit(1)
     return lm
