@@ -67,7 +67,7 @@ nb_path: "index.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>link_check</code>(<strong><code>path</code></strong>:"Root directory searched recursively for HTML files", <strong><code>host</code></strong>:"Host and path (without protocol) of web server"=<em><code>''</code></em>, <strong><code>config_file</code></strong>:"Location of file with urls to ignore"=<em><code>None</code></em>)</p>
+<h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>link_check</code>(<strong><code>path</code></strong>:"Root directory searched recursively for HTML files", <strong><code>host</code></strong>:"Host and path (without protocol) of web server"=<em><code>''</code></em>, <strong><code>config_file</code></strong>:"Location of file with urls to ignore"=<em><code>None</code></em>, <strong><code>exit_on_err</code></strong>:"Exit with a status code 1 if broken links are found."=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Check for broken links recursively in <code>path</code>.</p>
 
@@ -280,8 +280,8 @@ https://www.google.com
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
-<pre><code>usage: link_check [-h] [--host HOST] [--config_file CONFIG_FILE] [--pdb]
-                  [--xtra XTRA]
+<pre><code>usage: link_check [-h] [--host HOST] [--config_file CONFIG_FILE]
+                  [--exit_on_err] [--pdb] [--xtra XTRA]
                   path
 
 Check for broken links recursively in `path`.
@@ -294,7 +294,9 @@ optional arguments:
   --host HOST           Host and path (without protocol) of web server
                         (default: )
   --config_file CONFIG_FILE
-                        Location of file with urls to ignore</code></pre>
+                        Location of file with urls to ignore
+  --exit_on_err         Exit with a status code 1 if broken links are found.
+                        (default: False)</code></pre>
 
 </div>
 </div>
@@ -308,6 +310,37 @@ optional arguments:
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Docs site: <a href="https://fastlinkcheck.fast.ai/">fastlinkcheck.fast.ai</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Appendix:-Using-link_check-in-GitHub-Actions">Appendix: Using <a href="/linkcheck.html#link_check"><code>link_check</code></a> in GitHub Actions<a class="anchor-link" href="#Appendix:-Using-link_check-in-GitHub-Actions"> </a></h2><p>In the below example we pass the flag <code>--exit_on_err</code> which will mark this workflow as failed if a broken link is found.</p>
+<div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Check Links</span>
+<span class="nt">on</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">workflow_dispatch</span><span class="p p-Indicator">,</span> <span class="nv">push</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">check-links</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+    <span class="nt">steps</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">check for broken links</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">pip install fastlinkcheck</span>
+        <span class="no">link_check _example --exit_on_err</span>
+</pre></div>
+<p>You can open an issue if broken links are found by adding a few extra lines of code:</p>
+<div class="highlight"><pre><span></span><span class="nn">...</span>
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">check for broken links</span>
+        <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+          <span class="no">pip install fastlinkcheck</span>
+          <span class="no">errs=$(link_check _example)</span>
+          <span class="no">export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}</span>
+          <span class="no">gh issue create -t &quot;test issue from gh&quot; -b &quot;$errs&quot; -R ${{ github.repository }}</span>
+</pre></div>
+<p>See the <a href="https://docs.github.com/en/free-pro-team@latest/actions">GitHub Actions docs</a> for more information.</p>
 
 </div>
 </div>

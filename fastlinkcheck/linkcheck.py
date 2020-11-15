@@ -84,7 +84,7 @@ def broken_urls(links, ignore_urls=None):
 def link_check(path:Param("Root directory searched recursively for HTML files", str),
                host:Param("Host and path (without protocol) of web server", str)='',
                config_file:Param("Location of file with urls to ignore",str)=None,
-               exit_on_err:Param("Location of file with urls to ignore", store_true)=False):
+               exit_on_err:Param("Exit with a status code 1 if broken links are found.", store_true)=False):
     """Check for broken links recursively in `path`."""
     path = Path(path)
     assert path.exists(), f"{path.absolute()} does not exist."

@@ -15,7 +15,7 @@
 
 <h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L83" class="source_link" style="float:right">[source]</a></h4>
 
-> <code>link_check</code>(**`path`**:"Root directory searched recursively for HTML files", **`host`**:"Host and path (without protocol) of web server"=*`''`*, **`config_file`**:"Location of file with urls to ignore"=*`None`*)
+> <code>link_check</code>(**`path`**:"Root directory searched recursively for HTML files", **`host`**:"Host and path (without protocol) of web server"=*`''`*, **`config_file`**:"Location of file with urls to ignore"=*`None`*, **`exit_on_err`**:"Exit with a status code 1 if broken links are found."=*`False`*)
 
 Check for broken links recursively in `path`.
 
@@ -85,8 +85,8 @@ print(broken_links)
 > link_check --help
 
 ```
-usage: link_check [-h] [--host HOST] [--config_file CONFIG_FILE] [--pdb]
-                  [--xtra XTRA]
+usage: link_check [-h] [--host HOST] [--config_file CONFIG_FILE]
+                  [--exit_on_err] [--pdb] [--xtra XTRA]
                   path
 
 Check for broken links recursively in `path`.
@@ -100,8 +100,45 @@ optional arguments:
                         (default: )
   --config_file CONFIG_FILE
                         Location of file with urls to ignore
+  --exit_on_err         Exit with a status code 1 if broken links are found.
+                        (default: False)
 ```
 
 ## Documentation
 
 Docs site: [fastlinkcheck.fast.ai](https://fastlinkcheck.fast.ai/)
+
+## Appendix: Using `link_check` in GitHub Actions
+
+
+In the below example we pass the flag `--exit_on_err ` which will mark this workflow as failed if a broken link is found.
+
+```yaml
+name: Check Links
+on: [workflow_dispatch, push]
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+    - name: check for broken links
+      run: |
+        pip install fastlinkcheck
+        link_check _example --exit_on_err 
+```
+
+You can open an issue if broken links are found by adding a few extra lines of code:
+
+```yaml
+...
+      - name: check for broken links
+        run: |
+          pip install fastlinkcheck
+          errs=$(link_check _example)
+          export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+          gh issue create -t "test issue from gh" -b "$errs" -R ${{ github.repository }}
+```
+
+See the [GitHub Actions docs](https://docs.github.com/en/free-pro-team@latest/actions) for more information.
