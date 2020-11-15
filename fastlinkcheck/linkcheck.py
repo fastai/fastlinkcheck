@@ -95,8 +95,8 @@ def link_check(path:Param("Root directory searched recursively for HTML files", 
     ignore_urls = set(ignore.filter(urlvalid))
     lm = _LinkMap({k:links[k] for k in (broken_urls(links, ignore_urls) + broken_local(links, ignore_paths))})
     if actions_output:
-        print(f"::set-output name=bool_broken_links::{bool(lm)}")
-        if lm: print(f"::set-output name=logs_broken_links::{str(lm)}")
+        print(fr"::set-output name=bool_broken_links::{bool(lm)}")
+        if lm: print(fr"::set-output name=logs_broken_links::{repr(lm)}")
     msg = f'\nERROR: The Following Broken Links or Paths were found:\n{lm}' if lm else 'No Broken Links Found!'
     if print_logs: print(msg)
     return lm
