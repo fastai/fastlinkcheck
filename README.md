@@ -11,7 +11,7 @@
 ## Usage
 
 
-<h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L83" class="source_link" style="float:right">[source]</a></h4>
+<h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L85" class="source_link" style="float:right">[source]</a></h4>
 
 > <code>link_check</code>(**`path`**:"Root directory searched recursively for HTML files", **`host`**:"Host and path (without protocol) of web server"=*`''`*, **`config_file`**:"Location of file with urls to ignore"=*`None`*, **`actions_output`**:"Toggle GitHub Actions output on/off"=*`False`*, **`print_logs`**:"Toggle printing logs to stdout."=*`False`*)
 

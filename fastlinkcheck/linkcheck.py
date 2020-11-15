@@ -55,8 +55,8 @@ class _LinkMap(dict):
         rstr = L(f'- {k!r} was found in the following pages:\n{self._repr_locs(k)}' for k in self).concat()
         return '\n'.join(rstr)
     _repr_markdown_ = __repr__
-    def raw(self):
-        return self.__repr__().replace("\n","\\n")
+    def actions_escape(self):
+        return self.__repr__().replace("\n","%0A").replace("\r", "%0D")
 
 # Cell
 def local_urls(path:Path, host:str):
@@ -98,6 +98,7 @@ def link_check(path:Param("Root directory searched recursively for HTML files", 
     lm = _LinkMap({k:links[k] for k in (broken_urls(links, ignore_urls) + broken_local(links, ignore_paths))})
     if actions_output:
         print(f"::set-output name=bool_broken_links::{bool(lm)}")
+        print(f"::set-output name=logs_broken_links::{lm.actions_escape()}")
     msg = f'\nERROR: The Following Broken Links or Paths were found:\n{lm}' if lm else 'No Broken Links Found!'
     if print_logs: print(msg)
     return lm
