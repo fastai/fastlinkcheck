@@ -99,3 +99,7 @@ optional arguments:
   --config_file CONFIG_FILE
                         Location of file with urls to ignore
 ```
+
+## Documentation
+
+Docs site: [fastlinkcheck.fast.ai](https://fastlinkcheck.fast.ai/)
