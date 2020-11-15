@@ -177,7 +177,7 @@ nb_path: "linkcheck.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="local_urls" class="doc_header"><code>local_urls</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>local_urls</code>(<strong><code>path</code></strong>:<code>Path</code>, <strong><code>host</code></strong>:<code>str</code>)</p>
+<h4 id="local_urls" class="doc_header"><code>local_urls</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L62" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>local_urls</code>(<strong><code>path</code></strong>:<code>Path</code>, <strong><code>host</code></strong>:<code>str</code>)</p>
 </blockquote>
 <p>returns a <code>dict</code> mapping all HTML files in <code>path</code> to a list of locally-resolved links in that file</p>
 
@@ -232,15 +232,15 @@ nb_path: "linkcheck.ipynb"
 
 <div class="output_markdown rendered_html output_subarea output_execute_result">
 <ul>
-<li>'<a href="http://www.bing.com">http://www.bing.com</a>' was found in the following pages:<ul>
-<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/test.html</code></li>
-</ul>
-</li>
 <li>Path('/Users/hamelsmu/github/fastlinkcheck/_example/test.js') was found in the following pages:<ul>
 <li><code>/Users/hamelsmu/github/fastlinkcheck/_example/test.html</code></li>
 </ul>
 </li>
 <li>'<a href="http://somecdn.com/doesntexist.html">http://somecdn.com/doesntexist.html</a>' was found in the following pages:<ul>
+<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/test.html</code></li>
+</ul>
+</li>
+<li>'<a href="http://www.bing.com">http://www.bing.com</a>' was found in the following pages:<ul>
 <li><code>/Users/hamelsmu/github/fastlinkcheck/_example/test.html</code></li>
 </ul>
 </li>
@@ -277,7 +277,7 @@ nb_path: "linkcheck.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="broken_local" class="doc_header"><code>broken_local</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L69" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>broken_local</code>(<strong><code>links</code></strong>, <strong><code>ignore_paths</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="broken_local" class="doc_header"><code>broken_local</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L71" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>broken_local</code>(<strong><code>links</code></strong>, <strong><code>ignore_paths</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>List of items in keys of <code>links</code> that are <code>Path</code>s that do not exist</p>
 
@@ -366,7 +366,7 @@ nb_path: "linkcheck.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="broken_urls" class="doc_header"><code>broken_urls</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L75" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>broken_urls</code>(<strong><code>links</code></strong>, <strong><code>ignore_urls</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="broken_urls" class="doc_header"><code>broken_urls</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L77" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>broken_urls</code>(<strong><code>links</code></strong>, <strong><code>ignore_urls</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>List of items in keys of <code>links</code> that are URLs that return a failure status code</p>
 
@@ -437,7 +437,7 @@ nb_path: "linkcheck.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>link_check</code>(<strong><code>path</code></strong>:"Root directory searched recursively for HTML files", <strong><code>host</code></strong>:"Host and path (without protocol) of web server"=<em><code>''</code></em>, <strong><code>config_file</code></strong>:"Location of file with urls to ignore"=<em><code>None</code></em>, <strong><code>actions_output</code></strong>:"Toggle GitHub Actions output on/off"=<em><code>False</code></em>, <strong><code>print_logs</code></strong>:"Toggle printing logs to stdout."=<em><code>False</code></em>)</p>
+<h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L85" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>link_check</code>(<strong><code>path</code></strong>:"Root directory searched recursively for HTML files", <strong><code>host</code></strong>:"Host and path (without protocol) of web server"=<em><code>''</code></em>, <strong><code>config_file</code></strong>:"Location of file with urls to ignore"=<em><code>None</code></em>, <strong><code>actions_output</code></strong>:"Toggle GitHub Actions output on/off"=<em><code>False</code></em>, <strong><code>print_logs</code></strong>:"Toggle printing logs to stdout."=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Check for broken links recursively in <code>path</code>.</p>
 
@@ -611,10 +611,9 @@ https://www.google.com
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>You can optionally emit variables for GitHub Actions <a href="https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-commands-for-github-actions#setting-an-output-parameter">as discussed here</a>.  These can be useful if you are using this utility in GitHub Actions for continuous integration. Currently, there are two variables that are emitted:</p>
+<p>You can optionally emit variables for GitHub Actions <a href="https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-commands-for-github-actions#setting-an-output-parameter">as discussed here</a>.  These can be useful if you are using this utility in GitHub Actions for continuous integration. Currently, these are the variables that are emitted:</p>
 <ul>
 <li><code>bool_broken_links</code>: this will be either <code>True</code> or <code>False</code> depending on if broken links are found.</li>
-<li><code>logs_broken_links</code>: these are the logs that contain a list of all the broken links found.</li>
 </ul>
 
 </div>
@@ -650,7 +649,6 @@ https://www.google.com
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>::set-output name=bool_broken_links::True
-::set-output name=logs_broken_links::- &#39;http://somecdn.com/doesntexist.html&#39; was found in the following pages:\n  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`\n- Path(&#39;/Users/hamelsmu/github/fastlinkcheck/_example/www.bing.com&#39;) was found in the following pages:\n  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`\n- Path(&#39;/Users/hamelsmu/github/fastlinkcheck/_example/test.js&#39;) was found in the following pages:\n  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`\n- Path(&#39;/Users/hamelsmu/github/fastlinkcheck/_example/fastlinkcheck.com/test.html&#39;) was found in the following pages:\n  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
 </pre>
 </div>
 </div>
@@ -681,7 +679,7 @@ The <code>-h</code> or <code>--help</code> flag will allow you to see the comman
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="link_check_cli" class="doc_header"><code>link_check_cli</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L106" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>link_check_cli</code>(<strong><code>path</code></strong>:"Root directory searched recursively for HTML files", <strong><code>host</code></strong>:"Host and path (without protocol) of web server"=<em><code>''</code></em>, <strong><code>config_file</code></strong>:"Location of file with urls to ignore"=<em><code>None</code></em>, <strong><code>actions_output</code></strong>:"Toggle GitHub Actions output on/off"=<em><code>False</code></em>, <strong><code>exit_on_found</code></strong>:"Exit with status code 1 if broken links are found"=<em><code>False</code></em>)</p>
+<h4 id="link_check_cli" class="doc_header"><code>link_check_cli</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L107" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>link_check_cli</code>(<strong><code>path</code></strong>:"Root directory searched recursively for HTML files", <strong><code>host</code></strong>:"Host and path (without protocol) of web server"=<em><code>''</code></em>, <strong><code>config_file</code></strong>:"Location of file with urls to ignore"=<em><code>None</code></em>, <strong><code>actions_output</code></strong>:"Toggle GitHub Actions output on/off"=<em><code>False</code></em>, <strong><code>exit_on_found</code></strong>:"Exit with status code 1 if broken links are found"=<em><code>False</code></em>)</p>
 </blockquote>
 
 </div>
