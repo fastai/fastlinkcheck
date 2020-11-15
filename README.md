@@ -117,6 +117,6 @@ optional arguments:
   --config_file CONFIG_FILE
                         Location of file with urls to ignore
   --actions_output      Toggle GitHub Actions output on/off (default: False)
-  --exit_on_found       (CLI Only) Exit with status code 1 if broken links are
-                        found (default: False)
+  --exit_on_found       Exit with status code 1 if broken links are found
+                        (default: False)
 ```

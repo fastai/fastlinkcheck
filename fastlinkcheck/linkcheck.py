@@ -100,12 +100,13 @@ def link_check(path:Param("Root directory searched recursively for HTML files", 
     return lm
 
 # Cell
+
 @call_parse
 def link_check_cli(path:Param("Root directory searched recursively for HTML files", str),
                    host:Param("Host and path (without protocol) of web server", str)='',
                    config_file:Param("Location of file with urls to ignore",str)=None,
                    actions_output:Param("Toggle GitHub Actions output on/off",store_true)=False,
-                   exit_on_found:Param("(CLI Only) Exit with status code 1 if broken links are found", store_true)=False):
+                   exit_on_found:Param("Exit with status code 1 if broken links are found", store_true)=False):
     is_cli = (SCRIPT_INFO.func == 'link_check_cli')
     lm = link_check(path=path, host=host, config_file=config_file, actions_output=actions_output, print_logs=True)
     if is_cli and lm and exit_on_found: sys.exit(1)
