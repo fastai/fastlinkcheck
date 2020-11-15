@@ -138,7 +138,7 @@ You can open an issue if broken links are found by adding a few extra lines of c
           pip install fastlinkcheck
           errs=$(link_check _example)
           export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
-          gh issue create -t "test issue from gh" -b "$errs" -R ${{ github.repository }}
+          gh issue create -t "test issue" -b "$errs" -R ${{ github.repository }}
 ```
 
 See the [GitHub Actions docs](https://docs.github.com/en/free-pro-team@latest/actions) for more information.

@@ -338,7 +338,7 @@ optional arguments:
           <span class="no">pip install fastlinkcheck</span>
           <span class="no">errs=$(link_check _example)</span>
           <span class="no">export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}</span>
-          <span class="no">gh issue create -t &quot;test issue from gh&quot; -b &quot;$errs&quot; -R ${{ github.repository }}</span>
+          <span class="no">gh issue create -t &quot;test issue&quot; -b &quot;$errs&quot; -R ${{ github.repository }}</span>
 </pre></div>
 <p>See the <a href="https://docs.github.com/en/free-pro-team@latest/actions">GitHub Actions docs</a> for more information.</p>
 
