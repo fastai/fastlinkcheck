@@ -1,6 +1,6 @@
 
 name: Check Links
-on: [workflow_dispatch push]
+on: [workflow_dispatch, push]
 
 jobs:
   check-links:
