@@ -56,7 +56,8 @@ class _LinkMap(dict):
         return '\n'.join(rstr)
     _repr_markdown_ = __repr__
     def actions_escape(self):
-        return self.__repr__().replace("\n","%0A").replace("\r", "%0D")
+        rstr = L(f'- `{k!r}` was found in the following pages:\n{self._repr_locs(k)}' for k in self).concat()
+        return '\n'.join(rstr).replace("\n","%0A").replace("\r", "%0D")
 
 # Cell
 def local_urls(path:Path, host:str):
