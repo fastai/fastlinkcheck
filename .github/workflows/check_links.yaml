@@ -11,4 +11,4 @@ jobs:
     - name: Check links
       run: |
         pip install fastlinkcheck
-        link_check _example --exit_on_err 
+        link_check _example 
