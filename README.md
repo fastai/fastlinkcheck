@@ -14,7 +14,7 @@ To get started, read [the documentation](https://fastlinkcheck.fast.ai/).
 
 After installing `fastlinkcheck`, the cli command `link_check` is available from the command line.  We can see various options with the `--help` flag.
 
-```bash
+```
 link_check --help
 ```
 
@@ -38,7 +38,7 @@ link_check --help
 
 We can search the directory `_example/broken_links` in this repo recursively for broken links like this:
 
-```bash
+```
 link_check _example/broken_links 
 ```
 
@@ -60,7 +60,7 @@ Specifying the `--host` parameter allows you detect links that are internal by i
 
 We must be careful when using the `--host` argument to only pass the host (and path, if necessary) **without** the protocol.  For example, this is how we specify the hostname if your site's url is `http://fastlinkcheck.com/test.html`:
 
-```bash
+```
 link_check _example/broken_links --host fastlinkcheck.com
 ```
 
@@ -77,7 +77,7 @@ link_check _example/broken_links --host fastlinkcheck.com
 
 We now have one less broken link as there is indeed a file named `test.html` in the root of the path we are searching.  However, if we add a path to the end of `--host` , such as `fastlinkcheck.com/mysite` the link would again be listed as broken because `_example/broken_links/mysite/test.html` does not exist:
 
-```bash
+```
 link_check _example/broken_links --host fastlinkcheck.com/mysite
 ```
 
@@ -97,7 +97,7 @@ link_check _example/broken_links --host fastlinkcheck.com/mysite
 
 You can ignore links by creating a text file that contains a list of urls and paths to ignore.  For example, the file `_example/broken_links/linkcheck.rc` contains:
 
-```bash
+```
 cat _example/broken_links/linkcheck.rc
 ```
 
@@ -107,7 +107,7 @@ cat _example/broken_links/linkcheck.rc
 
 We can use this file to ignore urls and paths with the `--config_file` argument.  This will filter out references to the broken link `/test.js` from our earlier results:
 
-```bash
+```
 link_check _example/broken_links --host fastlinkcheck.com --config_file _example/broken_links/linkcheck.rc
 ```
 
@@ -121,7 +121,7 @@ link_check _example/broken_links --host fastlinkcheck.com --config_file _example
 
 Finally, if there are no broken links, `link_check` will not return anything.  The directory `_example/no_broken_links/` does not contain any HTML files with broken links:
 
-```bash
+```
 link_check _example/no_broken_links
 ```
 
