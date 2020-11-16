@@ -1,4 +1,4 @@
-These are test files for `fastlinkcheck`
+### This directory contains test files for `fastlinkcheck`
 
 There are two directories:
 
