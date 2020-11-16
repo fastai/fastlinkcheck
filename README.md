@@ -45,10 +45,10 @@ link_check _example/broken_links
                                                      
     ERROR: The Following Broken Links or Paths were found:
     
-    - 'http://somecdn.com/doesntexist.html' was found in the following pages:
+    - 'http://fastlinkcheck.com/test.html' was found in the following pages:
       - `/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html`
     
-    - 'http://fastlinkcheck.com/test.html' was found in the following pages:
+    - 'http://somecdn.com/doesntexist.html' was found in the following pages:
       - `/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html`
     
     - Path('/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.js') was found in the following pages:
@@ -84,10 +84,10 @@ link_check _example/broken_links --host fastlinkcheck.com/mysite
                                                      
     ERROR: The Following Broken Links or Paths were found:
     
-    - 'http://somecdn.com/doesntexist.html' was found in the following pages:
+    - 'http://fastlinkcheck.com/test.html' was found in the following pages:
       - `/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html`
     
-    - 'http://fastlinkcheck.com/test.html' was found in the following pages:
+    - 'http://somecdn.com/doesntexist.html' was found in the following pages:
       - `/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html`
     
     - Path('/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.js') was found in the following pages:

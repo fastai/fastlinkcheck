@@ -4,6 +4,7 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"get_links": "linkcheck.ipynb",
          "local_urls": "linkcheck.ipynb",
+         "html_exists": "linkcheck.ipynb",
          "broken_local": "linkcheck.ipynb",
          "broken_urls": "linkcheck.ipynb",
          "link_check": "linkcheck.ipynb"}

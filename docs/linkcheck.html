@@ -113,8 +113,7 @@ nb_path: "linkcheck.ipynb"
 &lt;a href=&#34;http://www.bing.com&#34;&gt;&lt;/a&gt;
 &lt;script src=&#34;test.js&#34;&gt;&lt;/script&gt;
 &lt;img src=&#34;http://fastlinkcheck.com/test.html&#34; /&gt;
-
-
+&lt;script src=&#34;/test&#34;&gt;&lt;/script&gt;
 </pre>
 </div>
 </div>
@@ -142,7 +141,8 @@ nb_path: "linkcheck.ipynb"
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">links</span> <span class="o">=</span> <span class="n">get_links</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
 <span class="n">test_eq</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">links</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;test.js&#39;</span><span class="p">,</span>
                      <span class="s1">&#39;//somecdn.com/doesntexist.html&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;http://www.bing.com&#39;</span><span class="p">,</span><span class="s1">&#39;http://fastlinkcheck.com/test.html&#39;</span><span class="p">})</span>
+                     <span class="s1">&#39;http://www.bing.com&#39;</span><span class="p">,</span><span class="s1">&#39;http://fastlinkcheck.com/test.html&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;/test&#39;</span><span class="p">})</span>
 </pre></div>
 
     </div>
@@ -232,12 +232,12 @@ nb_path: "linkcheck.ipynb"
 
 <div class="output_markdown rendered_html output_subarea output_execute_result">
 <ul>
-<li><p>'<a href="http://somecdn.com/doesntexist.html">http://somecdn.com/doesntexist.html</a>' was found in the following pages:</p>
+<li><p>Path('/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html') was found in the following pages:</p>
 <ul>
 <li><code>/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html</code></li>
 </ul>
 </li>
-<li><p>'<a href="http://www.bing.com">http://www.bing.com</a>' was found in the following pages:</p>
+<li><p>'<a href="http://somecdn.com/doesntexist.html">http://somecdn.com/doesntexist.html</a>' was found in the following pages:</p>
 <ul>
 <li><code>/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html</code></li>
 </ul>
@@ -247,7 +247,12 @@ nb_path: "linkcheck.ipynb"
 <li><code>/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html</code></li>
 </ul>
 </li>
-<li><p>Path('/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html') was found in the following pages:</p>
+<li><p>Path('/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test') was found in the following pages:</p>
+<ul>
+<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html</code></li>
+</ul>
+</li>
+<li><p>'<a href="http://www.bing.com">http://www.bing.com</a>' was found in the following pages:</p>
 <ul>
 <li><code>/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html</code></li>
 </ul>
@@ -281,9 +286,9 @@ nb_path: "linkcheck.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="broken_local" class="doc_header"><code>broken_local</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L69" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>broken_local</code>(<strong><code>links</code></strong>, <strong><code>ignore_paths</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="html_exists" class="doc_header"><code>html_exists</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L69" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>html_exists</code>(<strong><code>o</code></strong>)</p>
 </blockquote>
-<p>List of items in keys of <code>links</code> that are <code>Path</code>s that do not exist</p>
+<p>If a path without a suffix is proivded, see if the same path with a .html suffix exists</p>
 
 </div>
 
@@ -304,11 +309,96 @@ nb_path: "linkcheck.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>the path <code>_example/broken_links/test</code> doesn't exist, but <code>_example/broken_links/test.html</code> does:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;_example/broken_links/test&quot;</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="ow">not</span> <span class="n">p</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+<span class="k">assert</span> <span class="n">html_exists</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>the path <code>_example/broken_links/really_doesnt_exist</code> and neither does <code>_example/broken_links/really_doesnt_exist.html</code>:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;_example/broken_links/really_doesnt_exist&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="ow">not</span> <span class="n">p</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+<span class="k">assert</span> <span class="ow">not</span> <span class="n">html_exists</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Since <code>test.js</code> does not exist in the <code>example/</code> directory, <a href="/linkcheck.html#broken_local"><code>broken_local</code></a> returns this path:</p>
 
 </div>
 </div>
 </div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="broken_local" class="doc_header"><code>broken_local</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L74" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>broken_local</code>(<strong><code>links</code></strong>, <strong><code>ignore_paths</code></strong>=<em><code>None</code></em>)</p>
+</blockquote>
+<p>List of items in keys of <code>links</code> that are <code>Path</code>s that do not exist</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -370,7 +460,7 @@ nb_path: "linkcheck.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="broken_urls" class="doc_header"><code>broken_urls</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L75" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>broken_urls</code>(<strong><code>links</code></strong>, <strong><code>ignore_urls</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="broken_urls" class="doc_header"><code>broken_urls</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L80" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>broken_urls</code>(<strong><code>links</code></strong>, <strong><code>ignore_urls</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>List of items in keys of <code>links</code> that are URLs that return a failure status code</p>
 
@@ -441,7 +531,7 @@ nb_path: "linkcheck.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>link_check</code>(<strong><code>path</code></strong>:"Root directory searched recursively for HTML files", <strong><code>host</code></strong>:"Host and path (without protocol) of web server"=<em><code>None</code></em>, <strong><code>config_file</code></strong>:"Location of file with urls to ignore"=<em><code>None</code></em>)</p>
+<h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L88" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>link_check</code>(<strong><code>path</code></strong>:"Root directory searched recursively for HTML files", <strong><code>host</code></strong>:"Host and path (without protocol) of web server"=<em><code>None</code></em>, <strong><code>config_file</code></strong>:"Location of file with urls to ignore"=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Check for broken links recursively in <code>path</code>.</p>
 
