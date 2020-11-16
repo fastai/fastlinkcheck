@@ -83,7 +83,7 @@ nb_path: "linkcheck.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can use <a href="/linkcheck.html#get_links"><code>get_links</code></a> to parse an HTML file for different types of links.  For example, this is the contents of <code>./example/test.html</code>:</p>
+<p>We can use <a href="/linkcheck.html#get_links"><code>get_links</code></a> to parse an HTML file for different types of links.  For example, this is the contents of <code>./example/broken_links/test.html</code>:</p>
 
 </div>
 </div>
@@ -95,7 +95,7 @@ nb_path: "linkcheck.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">example</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;_example/test.html&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">example</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;_example/broken_links/test.html&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">example</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
 </pre></div>
 
@@ -215,7 +215,7 @@ nb_path: "linkcheck.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;./_example&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;./_example/broken_links/&#39;</span><span class="p">)</span>
 <span class="n">links</span> <span class="o">=</span> <span class="n">local_urls</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;fastlinkcheck.com&#39;</span><span class="p">)</span>
 <span class="n">links</span>
 </pre></div>
@@ -232,20 +232,24 @@ nb_path: "linkcheck.ipynb"
 
 <div class="output_markdown rendered_html output_subarea output_execute_result">
 <ul>
-<li>Path('/Users/hamelsmu/github/fastlinkcheck/_example/test.html') was found in the following pages:<ul>
-<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/test.html</code></li>
+<li><p>'<a href="http://somecdn.com/doesntexist.html">http://somecdn.com/doesntexist.html</a>' was found in the following pages:</p>
+<ul>
+<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html</code></li>
 </ul>
 </li>
-<li>Path('/Users/hamelsmu/github/fastlinkcheck/_example/test.js') was found in the following pages:<ul>
-<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/test.html</code></li>
+<li><p>'<a href="http://www.bing.com">http://www.bing.com</a>' was found in the following pages:</p>
+<ul>
+<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html</code></li>
 </ul>
 </li>
-<li>'<a href="http://www.bing.com">http://www.bing.com</a>' was found in the following pages:<ul>
-<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/test.html</code></li>
+<li><p>Path('/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.js') was found in the following pages:</p>
+<ul>
+<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html</code></li>
 </ul>
 </li>
-<li>'<a href="http://somecdn.com/doesntexist.html">http://somecdn.com/doesntexist.html</a>' was found in the following pages:<ul>
-<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/test.html</code></li>
+<li><p>Path('/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html') was found in the following pages:</p>
+<ul>
+<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html</code></li>
 </ul>
 </li>
 </ul>
@@ -327,7 +331,7 @@ nb_path: "linkcheck.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(#1) [Path(&#39;/Users/hamelsmu/github/fastlinkcheck/_example/test.js&#39;)]</pre>
+<pre>(#1) [Path(&#39;/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.js&#39;)]</pre>
 </div>
 
 </div>
@@ -437,7 +441,7 @@ nb_path: "linkcheck.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>link_check</code>(<strong><code>path</code></strong>:"Root directory searched recursively for HTML files", <strong><code>host</code></strong>:"Host and path (without protocol) of web server"=<em><code>''</code></em>, <strong><code>config_file</code></strong>:"Location of file with urls to ignore"=<em><code>None</code></em>, <strong><code>exit_on_err</code></strong>:"Exit with a status code 1 if broken links are found."=<em><code>False</code></em>)</p>
+<h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>link_check</code>(<strong><code>path</code></strong>:"Root directory searched recursively for HTML files", <strong><code>host</code></strong>:"Host and path (without protocol) of web server"=<em><code>None</code></em>, <strong><code>config_file</code></strong>:"Location of file with urls to ignore"=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Check for broken links recursively in <code>path</code>.</p>
 
@@ -465,8 +469,7 @@ nb_path: "linkcheck.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">links</span> <span class="o">=</span> <span class="n">link_check</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;_example&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;fastlinkcheck.com&#39;</span><span class="p">)</span>
-<span class="n">links</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">link_check</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;_example/broken_links/&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;fastlinkcheck.com&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -490,15 +493,56 @@ nb_path: "linkcheck.ipynb"
 
 <div class="output_markdown rendered_html output_subarea output_execute_result">
 <ul>
-<li>'<a href="http://somecdn.com/doesntexist.html">http://somecdn.com/doesntexist.html</a>' was found in the following pages:<ul>
-<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/test.html</code></li>
+<li><p>'<a href="http://somecdn.com/doesntexist.html">http://somecdn.com/doesntexist.html</a>' was found in the following pages:</p>
+<ul>
+<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html</code></li>
 </ul>
 </li>
-<li>Path('/Users/hamelsmu/github/fastlinkcheck/_example/test.js') was found in the following pages:<ul>
-<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/test.html</code></li>
+<li><p>Path('/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.js') was found in the following pages:</p>
+<ul>
+<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html</code></li>
 </ul>
 </li>
 </ul>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Similarly if there are no broken links, <a href="/linkcheck.html#link_check"><code>link_check</code></a> will not return any data.  In this case, there are no broken links in the directory <code>_example/no_broken_links/</code>:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="ow">not</span> <span class="n">link_check</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;_example/no_broken_links/&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
 
 </div>
 
@@ -570,7 +614,7 @@ https://www.google.com
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">link_check</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;_example&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;fastlinkcheck.com&#39;</span><span class="p">,</span> <span class="n">config_file</span><span class="o">=</span><span class="s1">&#39;_example/linkcheck.rc&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">link_check</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;_example/broken_links/&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;fastlinkcheck.com&#39;</span><span class="p">,</span> <span class="n">config_file</span><span class="o">=</span><span class="s1">&#39;_example/broken_links/linkcheck.rc&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -595,7 +639,7 @@ https://www.google.com
 <div class="output_markdown rendered_html output_subarea output_execute_result">
 <ul>
 <li>'<a href="http://somecdn.com/doesntexist.html">http://somecdn.com/doesntexist.html</a>' was found in the following pages:<ul>
-<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/test.html</code></li>
+<li><code>/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html</code></li>
 </ul>
 </li>
 </ul>
@@ -639,8 +683,8 @@ The <code>-h</code> or <code>--help</code> flag will allow you to see the comman
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>usage: link_check [-h] [--host HOST] [--config_file CONFIG_FILE]
-                  [--exit_on_err] [--pdb] [--xtra XTRA]
+<pre>usage: link_check [-h] [--host HOST] [--config_file CONFIG_FILE] [--pdb]
+                  [--xtra XTRA]
                   path
 
 Check for broken links recursively in `path`.
@@ -651,10 +695,8 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   --host HOST           Host and path (without protocol) of web server
-                        (default: )
   --config_file CONFIG_FILE
                         Location of file with urls to ignore
-  --exit_on_err         Location of file with urls to ignore (default: False)
   --pdb                 Run in pdb debugger (default: False)
   --xtra XTRA           Parse for additional args (default: &#39;&#39;)
 </pre>

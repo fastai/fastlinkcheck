@@ -33,7 +33,7 @@ def _local_url(u, root, host, fname):
     islocal=False
     # remove `host` prefix
     for o in 'http://','https://','http://www.','https://www.':
-        if u.startswith(o+host): u,islocal = remove_prefix(u, o+host),True
+        if host and u.startswith(o+host): u,islocal = remove_prefix(u, o+host),True
     # remove params, querystring, and fragment
     p = list(urlparse(u))[:5]+['']
     # local prefix, or no protocol or host
@@ -52,7 +52,7 @@ class _LinkMap(dict):
     """A dict that pretty prints Links and their associated locations."""
     def _repr_locs(self, k): return '\n'.join(f'  - `{p}`' for p in self[k])
     def __repr__(self):
-        rstr = L(f'- {k!r} was found in the following pages:\n{self._repr_locs(k)}' for k in self).concat()
+        rstr = L(f'\n- {k!r} was found in the following pages:\n{self._repr_locs(k)}' for k in self).concat()
         return '\n'.join(rstr)
     _repr_markdown_ = __repr__
 
@@ -82,10 +82,9 @@ def broken_urls(links, ignore_urls=None):
 # Cell
 @call_parse
 def link_check(path:Param("Root directory searched recursively for HTML files", str),
-               host:Param("Host and path (without protocol) of web server", str)='',
-               config_file:Param("Location of file with urls to ignore",str)=None,
-               exit_on_err:Param("Exit with a status code 1 if broken links are found.", store_true)=False):
-    """Check for broken links recursively in `path`."""
+               host:Param("Host and path (without protocol) of web server", str)=None,
+               config_file:Param("Location of file with urls to ignore",str)=None):
+    "Check for broken links recursively in `path`."
     path = Path(path)
     assert path.exists(), f"{path.absolute()} does not exist."
     is_cli = (SCRIPT_INFO.func == 'link_check')
@@ -95,7 +94,8 @@ def link_check(path:Param("Root directory searched recursively for HTML files", 
     ignore_paths = set((path/o).resolve() for o in ignore if not urlvalid(o))
     ignore_urls = set(ignore.filter(urlvalid))
     lm = _LinkMap({k:links[k] for k in (broken_urls(links, ignore_urls) + broken_local(links, ignore_paths))})
-    msg = f'\nERROR: The Following Broken Links or Paths were found:\n{lm}' if lm else 'No Broken Links Found!'
-    if is_cli: print(msg)
-    if exit_on_err: sys.exit(1)
+    if is_cli and lm:
+        sys.stderr.write(f'\nERROR: The Following Broken Links or Paths were found:\n{lm}')
+        sys.exit(1)
+    if is_cli and not lm: print('No broken links found!')
     return lm

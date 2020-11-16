@@ -32,7 +32,7 @@ nb_path: "index.ipynb"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>fastlinkcheck</code> checks for broken links in HTML documents.  This occurs in parallel so performance is fast.  Both external links and internal links are checked.  Internal links are checked by verifying local files.</p>
-<p><a href="https://fastlinkcheck.fast.ai/">fastlinkcheck.fast.ai</a></p>
+<p>To get started, read <a href="https://fastlinkcheck.fast.ai/">the documentation</a>.</p>
 
 </div>
 </div>
@@ -56,36 +56,9 @@ nb_path: "index.ipynb"
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="link_check" class="doc_header"><code>link_check</code><a href="https://github.com/fastai/fastlinkcheck/tree/master/fastlinkcheck/linkcheck.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>link_check</code>(<strong><code>path</code></strong>:"Root directory searched recursively for HTML files", <strong><code>host</code></strong>:"Host and path (without protocol) of web server"=<em><code>''</code></em>, <strong><code>config_file</code></strong>:"Location of file with urls to ignore"=<em><code>None</code></em>, <strong><code>exit_on_err</code></strong>:"Exit with a status code 1 if broken links are found."=<em><code>False</code></em>)</p>
-</blockquote>
-<p>Check for broken links recursively in <code>path</code>.</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <a href="https://github.com/fastai/fastlinkcheck/tree/master/_example">_example/</a> directory in this repo contains sample HTML files which we can use for demonstration.</p>
-<p>The <code>path</code> parameter specifies the directory that will be searched recursively for HTML files that you wish to check.</p>
-<p>Specifying the <code>host</code> parameter allows you detect links that are internal by identifying links with that host name. External links are verified by making a request to the appropriate website.  On the other hand, internal links are verified by inspecting the presence and content of local files.</p>
+<p>After installing <code>fastlinkcheck</code>, the cli command <a href="/linkcheck.html#link_check"><code>link_check</code></a> is available from the command line.  We can see various options with the <code>--help</code> flag.</p>
 
 </div>
 </div>
@@ -97,53 +70,7 @@ nb_path: "index.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">fastlinkcheck</span> <span class="kn">import</span> <span class="n">link_check</span>
-
-<span class="n">broken_links</span> <span class="o">=</span> <span class="n">link_check</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;_example&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;fastlinkcheck.com&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">broken_links</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>- &#39;http://somecdn.com/doesntexist.html&#39; was found in the following pages:
-  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
-- Path(&#39;/Users/hamelsmu/github/fastlinkcheck/_example/test.js&#39;) was found in the following pages:
-  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Number of broken links found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">broken_links</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">link_check</span> <span class="o">--</span><span class="n">help</span>
 </pre></div>
 
     </div>
@@ -156,7 +83,22 @@ nb_path: "index.ipynb"
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Number of broken links found 2
+<pre>usage: link_check [-h] [--host HOST] [--config_file CONFIG_FILE] [--pdb]
+                  [--xtra XTRA]
+                  path
+
+Check for broken links recursively in `path`.
+
+positional arguments:
+  path                  Root directory searched recursively for HTML files
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --host HOST           Host and path (without protocol) of web server
+  --config_file CONFIG_FILE
+                        Location of file with urls to ignore
+  --pdb                 Run in pdb debugger (default: False)
+  --xtra XTRA           Parse for additional args (default: &#39;&#39;)
 </pre>
 </div>
 </div>
@@ -169,13 +111,7 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Ignore-links-with-a-configuration-file">Ignore links with a configuration file<a class="anchor-link" href="#Ignore-links-with-a-configuration-file"> </a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>You can choose to ignore files with a a plain-text file containing a list of urls to ignore.  For example, the file <code>linkcheck.rc</code> contains a list of urls I want to ignore:</p>
+<p>We can search the directory <code>_example/broken_links</code> in this repo recursively for broken links like this:</p>
 
 </div>
 </div>
@@ -187,7 +123,167 @@ nb_path: "index.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;_example/linkcheck.rc&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">link_check</span> <span class="n">_example</span><span class="o">/</span><span class="n">broken_links</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>                                                 
+ERROR: The Following Broken Links or Paths were found:
+
+- &#39;http://somecdn.com/doesntexist.html&#39; was found in the following pages:
+  - `/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html`
+
+- &#39;http://fastlinkcheck.com/test.html&#39; was found in the following pages:
+  - `/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html`
+
+- Path(&#39;/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.js&#39;) was found in the following pages:
+  - `/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html`</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre></pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Specifying the <code>--host</code> parameter allows you detect links that are internal by identifying links with that host name. External links are verified by making a request to the appropriate website.  On the other hand, internal links are verified by inspecting the presence and content of local files.</p>
+<p>We must be careful when using the <code>--host</code> argument to only pass the host (and path, if necessary) <strong>without</strong> the protocol.  For example, this is how we specify the hostname if your site's url is <code>http://fastlinkcheck.com/test.html</code>:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">link_check</span> <span class="n">_example</span><span class="o">/</span><span class="n">broken_links</span> <span class="o">--</span><span class="n">host</span> <span class="n">fastlinkcheck</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>                                                 
+ERROR: The Following Broken Links or Paths were found:
+
+- &#39;http://somecdn.com/doesntexist.html&#39; was found in the following pages:
+  - `/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html`
+
+- Path(&#39;/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.js&#39;) was found in the following pages:
+  - `/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html`</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre></pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now have one less broken link as there is indeed a file named <code>test.html</code> in the root of the path we are searching.  However, if we add a path to the end of <code>--host</code> , such as <code>fastlinkcheck.com/mysite</code> the link would again be listed as broken because <code>_example/broken_links/mysite/test.html</code> does not exist:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">link_check</span> <span class="n">_example</span><span class="o">/</span><span class="n">broken_links</span> <span class="o">--</span><span class="n">host</span> <span class="n">fastlinkcheck</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mysite</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>                                                 
+ERROR: The Following Broken Links or Paths were found:
+
+- &#39;http://somecdn.com/doesntexist.html&#39; was found in the following pages:
+  - `/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html`
+
+- &#39;http://fastlinkcheck.com/test.html&#39; was found in the following pages:
+  - `/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html`
+
+- Path(&#39;/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.js&#39;) was found in the following pages:
+  - `/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html`</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre></pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can ignore links by creating a text file that contains a list of urls and paths to ignore.  For example, the file <code>_example/broken_links/linkcheck.rc</code> contains:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cat</span> <span class="n">_example</span><span class="o">/</span><span class="n">broken_links</span><span class="o">/</span><span class="n">linkcheck</span><span class="o">.</span><span class="n">rc</span>
 </pre></div>
 
     </div>
@@ -202,7 +298,6 @@ nb_path: "index.ipynb"
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>test.js
 https://www.google.com
-
 </pre>
 </div>
 </div>
@@ -215,7 +310,7 @@ https://www.google.com
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this case <code>example/test.js</code> will be filtered out from the list:</p>
+<p>We can use this file to ignore urls and paths with the <code>--config_file</code> argument.  This will filter out references to the broken link <code>/test.js</code> from our earlier results:</p>
 
 </div>
 </div>
@@ -227,8 +322,7 @@ https://www.google.com
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">broken_links</span> <span class="o">=</span> <span class="n">link_check</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;_example&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;fastlinkcheck.com&#39;</span><span class="p">,</span> <span class="n">config_file</span><span class="o">=</span><span class="s1">&#39;_example/linkcheck.rc&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">broken_links</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">link_check</span> <span class="n">_example</span><span class="o">/</span><span class="n">broken_links</span> <span class="o">--</span><span class="n">host</span> <span class="n">fastlinkcheck</span><span class="o">.</span><span class="n">com</span> <span class="o">--</span><span class="n">config_file</span> <span class="n">_example</span><span class="o">/</span><span class="n">broken_links</span><span class="o">/</span><span class="n">linkcheck</span><span class="o">.</span><span class="n">rc</span>
 </pre></div>
 
     </div>
@@ -240,18 +334,56 @@ https://www.google.com
 
 <div class="output_area">
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>                                                 
+ERROR: The Following Broken Links or Paths were found:
 
-<div class="output_html rendered_html output_subarea ">
-
+- &#39;http://somecdn.com/doesntexist.html&#39; was found in the following pages:
+  - `/Users/hamelsmu/github/fastlinkcheck/_example/broken_links/test.html`</pre>
 </div>
-
 </div>
 
 <div class="output_area">
 
+<div class="output_subarea output_text output_error">
+<pre></pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, if there are no broken links, <a href="/linkcheck.html#link_check"><code>link_check</code></a> will not return anything.  The directory <code>_example/no_broken_links/</code> does not contain any HTML files with broken links:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">link_check</span> <span class="n">_example</span><span class="o">/</span><span class="n">no_broken_links</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>- &#39;http://somecdn.com/doesntexist.html&#39; was found in the following pages:
-  - `/Users/hamelsmu/github/fastlinkcheck/_example/test.html`
+<pre>No broken links found!
 </pre>
 </div>
 </div>
@@ -264,59 +396,20 @@ https://www.google.com
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="CLI-Function">CLI Function<a class="anchor-link" href="#CLI-Function"> </a></h3>
+<h2 id="Python">Python<a class="anchor-link" href="#Python"> </a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>link_check</code> can also be called from the command line.  We can see various options by passing the <code>--help</code> flag.  These options correspond to the same parameters as calling the <a href="/linkcheck.html#link_check"><code>link_check</code></a> function described above.</p>
-<blockquote><p>link_check --help</p>
-</blockquote>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code>usage: link_check [-h] [--host HOST] [--config_file CONFIG_FILE]
-                  [--exit_on_err] [--pdb] [--xtra XTRA]
-                  path
-
-Check for broken links recursively in `path`.
-
-positional arguments:
-  path                  Root directory searched recursively for HTML files
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --host HOST           Host and path (without protocol) of web server
-                        (default: )
-  --config_file CONFIG_FILE
-                        Location of file with urls to ignore
-  --exit_on_err         Exit with a status code 1 if broken links are found.
-                        (default: False)</code></pre>
+<p>You can also use these utilities from python instead of the terminal.  Please see <a href="https://fastlinkcheck.fast.ai/linkcheck.html/">these docs</a> for more information.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Documentation">Documentation<a class="anchor-link" href="#Documentation"> </a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Docs site: <a href="https://fastlinkcheck.fast.ai/">fastlinkcheck.fast.ai</a></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Appendix:-Using-link_check-in-GitHub-Actions">Appendix: Using <a href="/linkcheck.html#link_check"><code>link_check</code></a> in GitHub Actions<a class="anchor-link" href="#Appendix:-Using-link_check-in-GitHub-Actions"> </a></h2><p>In the below example we pass the flag <code>--exit_on_err</code> which will mark this workflow as failed if a broken link is found.</p>
+<h2 id="Using-link_check-in-GitHub-Actions">Using <a href="/linkcheck.html#link_check"><code>link_check</code></a> in GitHub Actions<a class="anchor-link" href="#Using-link_check-in-GitHub-Actions"> </a></h2><p>Here is an example of how you can use this utility in GitHub Actions:</p>
 <div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Check Links</span>
 <span class="nt">on</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">workflow_dispatch</span><span class="p p-Indicator">,</span> <span class="nv">push</span><span class="p p-Indicator">]</span>
 
@@ -329,16 +422,15 @@ optional arguments:
     <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">check for broken links</span>
       <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
         <span class="no">pip install fastlinkcheck</span>
-        <span class="no">link_check _example --exit_on_err</span>
+        <span class="no">link_check _example</span>
 </pre></div>
-<p>You can open an issue if broken links are found by adding a few extra lines of code:</p>
+<p>We can add another line of code to open an issue instead when a broken link is found:</p>
 <div class="highlight"><pre><span></span><span class="nn">...</span>
-      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">check for broken links</span>
-        <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-          <span class="no">pip install fastlinkcheck</span>
-          <span class="no">errs=$(link_check _example)</span>
-          <span class="no">export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}</span>
-          <span class="no">gh issue create -t &quot;test issue&quot; -b &quot;$errs&quot; -R ${{ github.repository }}</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">check for broken links</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">pip install fastlinkcheck</span>
+        <span class="no">link_check _example 2&gt; err</span>
+        <span class="no">[[ -s err ]] &amp;&amp;  gh issue create -t &quot;Broken links found&quot; -b &quot;$(cat err)&quot; -R yourusername/yourrepo</span>
 </pre></div>
 <p>See the <a href="https://docs.github.com/en/free-pro-team@latest/actions">GitHub Actions docs</a> for more information.</p>
 
