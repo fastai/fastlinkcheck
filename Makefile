@@ -21,7 +21,7 @@ docs: $(SRC)
 test:
 	nbdev_test_nbs
 
-release: pypi
+release: pypi conda_release
 	nbdev_bump_version
 
 conda_release:

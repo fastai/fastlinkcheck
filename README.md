@@ -154,7 +154,7 @@ jobs:
         link_check _example 
 ```
 
-We can add another line of code to open an issue instead when a broken link is found:
+We can a few more lines of code to open an issue instead when a broken link is found:
 
 ```yaml
 ...
@@ -162,6 +162,7 @@ We can add another line of code to open an issue instead when a broken link is f
       run: |
         pip install fastlinkcheck
         link_check _example 2> err
+        export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
         [[ -s err ]] &&  gh issue create -t "Broken links found" -b "$(cat err)" -R yourusername/yourrepo 
 ```
 
