@@ -429,8 +429,8 @@ ERROR: The Following Broken Links or Paths were found:
     <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">check for broken links</span>
       <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
         <span class="no">pip install fastlinkcheck</span>
-        <span class="no">link_check _example 2&gt; err</span>
-        <span class="no">export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}</span>
+        <span class="no">link_check _example 2&gt; err || true</span>
+        <span class="no">export GITHUB_TOKEN=&quot;YOUR_TOKEN&quot;</span>
         <span class="no">[[ -s err ]] &amp;&amp;  gh issue create -t &quot;Broken links found&quot; -b &quot;$(cat err)&quot; -R yourusername/yourrepo</span>
 </pre></div>
 <p>See the <a href="https://docs.github.com/en/free-pro-team@latest/actions">GitHub Actions docs</a> for more information.</p>
