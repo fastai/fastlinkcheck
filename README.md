@@ -169,6 +169,7 @@ We can a few more lines of code to open an issue instead when a broken link is f
 We can extend this even further to only open an issue when another issue with a specific label isn't already open:
 
 ```yaml
+...
     - name: check for broken links
       run: |
        pip install fastlinkcheck

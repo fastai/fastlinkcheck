@@ -434,8 +434,9 @@ ERROR: The Following Broken Links or Paths were found:
         <span class="no">[[ -s err ]] &amp;&amp;  gh issue create -t &quot;Broken links found&quot; -b &quot;$(&lt; err)&quot; -R &quot;yourusername/yourrepo&quot;</span>
 </pre></div>
 <p>We can extend this even further to only open an issue when another issue with a specific label isn't already open:</p>
-<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">check for broken links</span>
-      <span class="l l-Scalar l-Scalar-Plain">run</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
+<div class="highlight"><pre><span></span><span class="nn">...</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">check for broken links</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
        <span class="no">pip install fastlinkcheck</span>
        <span class="no">link_check &quot;docs/_site&quot; --host &quot;docs.fast.ai&quot; 2&gt; err || true</span>
         <span class="no">export GITHUB_TOKEN=&quot;YOUR_TOKEN&quot;</span>
