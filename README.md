@@ -159,23 +159,25 @@ We can a few more lines of code to open an issue instead when a broken link is f
 ```yaml
 ...
     - name: check for broken links
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         pip install fastlinkcheck
         link_check _example 2> err || true
-        export GITHUB_TOKEN="YOUR_TOKEN"
         [[ -s err ]] &&  gh issue create -t "Broken links found" -b "$(< err)" -R "yourusername/yourrepo"
 ```
 
-We can extend this even further to only open an issue when another issue with a specific label isn't already open:
+We can extend this even further to only open an issue when another issue with a specific label isn't already open (first you need to create the `broken-link` label in the repository on Github):
 
 ```yaml
 ...
     - name: check for broken links
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
        pip install fastlinkcheck
        link_check "docs/_site" --host "docs.fast.ai" 2> err || true
-        export GITHUB_TOKEN="YOUR_TOKEN"
-        if [[ -z $(gh issue list -l "broken-link")) && (-s err) ]]; then
+        if [[ (-z $(gh issue list -l "broken-link")) && (-s err) ]]; then
           gh issue create -t "Broken links found" -b "$(< err)" -l "broken-link" -R "yourusername/yourrepo"
         fi
 ```
